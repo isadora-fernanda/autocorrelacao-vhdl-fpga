@@ -1,0 +1,7 @@
+sim/work/
+*.cf
+quartus/db/
+quartus/incremental_db/
+quartus/output_files/
+quartus/proc_sys/
+*.qws

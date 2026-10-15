@@ -21,6 +21,7 @@ Os dados de teste são medições reais de um escoamento de água a 1 m/s, adqui
 ## Arquitetura
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#ffffff','primaryBorderColor':'#333333','primaryTextColor':'#1a1a1a','lineColor':'#333333','fontFamily':'Arial','fontSize':'15px','edgeLabelBackground':'#ffffff'}}}%%
 flowchart LR
     N["Nios II<br/>(programa em C)"] -- "barramento Avalon<br/>External Bus Bridge" --> S["System.vhd<br/>registradores e máquina de estados"]
     S --> M["Memory_Block<br/>4 RAMs: parte real e imaginária<br/>de x(k) e x(k+1)"]

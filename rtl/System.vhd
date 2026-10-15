@@ -97,7 +97,7 @@ signal read_data   :  std_logic_vector(31 downto 0);
 alias start : std_logic is CTRL_REG(0);
 alias done  : std_logic is STATUS_REG(0);
 begin
-   effective_address <= address(11 downto 2); -- O adress mode do processador é +4, porém a FPGA usa +1, então os últimos
+   effective_address <= address(11 downto 2); -- O address mode do processador é +4, porém a FPGA usa +1, então os últimos
 															 -- dois bits são ignorados para dividir por 4
    conj_I2 <= not(I2(31)) & I2(30 downto 0);
 	complex_multiplier_Inst: complex_multiplier PORT MAP ( -- Aqui o multiplier faz (R(k+1) + Ii(k+1))*(R(k) - Ii(k))
@@ -155,13 +155,13 @@ end process;
 
 read_data <= CTRL_REG            when effective_address=512    else -- 512 address = start command
              STATUS_REG          when effective_address=513    else -- 513 address = hold status (0 se rodando, 1 se terminou)
-				 R_REG               when effective_address=256    else -- 256 e 257 adress é onde o resultado da autocorrelação é salvo
+				 R_REG               when effective_address=256    else -- 256 e 257 são os endereços onde o resultado da autocorrelação é salvo
 				 I_REG               when effective_address=257    else
              input_memory_data;
 
 
 -- rw = '0' para escrever, bus_enable = '1' para bits válidos e effective_address(9) é 
--- o bit mais significativo de address; então, se effective_adress(9) = 255 (2^8-1) ou menos,
+-- o bit mais significativo de address; então, se effective_address(9) = 255 (2^8-1) ou menos,
 -- o qual é o espaço da memória onde os 256 números serão salvos, a escrita pode ocorrer
 input_memory_we <= not(rw) and bus_enable and not(effective_address(9));
 input_memory: Memory_Block PORT MAP (

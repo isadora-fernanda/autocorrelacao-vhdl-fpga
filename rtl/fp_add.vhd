@@ -161,7 +161,7 @@ begin
       generic map (P => P+3, E => E, PLOG => PLOG)
       port map(frac => efectFracB, diff_exp => diffExp, frac_align => efectFracB_align);
 
-   -- Adição/Substração
+   -- Adição/Subtração
    -- A e B (agora efectFracA e efectFracB_align) são ambos somados e subtraídos,
    -- já que este módulo comporta tanto soma quanto subtração
    addAB <= efectFracA + efectFracB_align;
@@ -212,7 +212,7 @@ begin
       end if;
    end process;
 
-   -- Se ambos os útimos bits forem '1', então é arredondado para cima
+   -- Se ambos os últimos bits forem '1', então é arredondado para cima
    isTwo <= '1' when (frac_stg2(P+2 downto 2)= ONES(P+2 downto 2)) else '0'; -- Só pode acontecer na adição
    -- Então o expoente normalizado é calculado, o qual é o do resultado da adição - necessitando adicionar
    -- didNorm1 ou isTwo, caso tenha sido normalizado ou arredondado
